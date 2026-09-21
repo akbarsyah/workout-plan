@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f3ee">
+<title>4-Week Movement Plan</title>
+<style>
+:root{--bg:#f5f3ee;--paper:#fcfbf8;--ink:#252722;--muted:#76776f;--line:#dedbd2;--accent:#61705b;--accent2:#dfe6da;--warm:#92704a;--warmbg:#f1e9dc;--red:#875752;--r:13px;--shadow:0 5px 22px rgba(35,35,30,.045);--max:1160px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}main{max-width:var(--max);margin:auto;padding:20px}
+header{display:flex;justify-content:space-between;gap:24px;align-items:end;padding:5px 0 18px;border-bottom:1px solid var(--line)}
+.kicker{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}h1{font-size:clamp(28px,3.4vw,42px);line-height:1;letter-spacing:-.045em;margin:0}.sub{margin:8px 0 0;color:var(--muted);font-size:13px}
+.meta{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px}.pill,.weekbtn{border:1px solid var(--line);background:var(--paper);padding:6px 9px;border-radius:7px;font-size:10px;color:#5f6059;white-space:nowrap}
+.today{margin-top:18px;background:var(--ink);color:#f7f5ef;border-radius:var(--r);padding:16px 18px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.today-label{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:#aaa99f;font-weight:750}.today-title{font-size:clamp(22px,2.5vw,30px);font-weight:700;letter-spacing:-.035em;margin-top:3px}.today-detail{color:#b9b8b0;font-size:11px;margin-top:4px}.today-action{display:flex;align-items:center;gap:10px}
+.progress-ring{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) var(--p,0%),#474942 0);position:relative}.progress-ring:after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--ink)}.progress-ring span{position:relative;z-index:1;font-size:11px;font-weight:750}
+.start{border:0;background:#f7f5ef;color:var(--ink);padding:9px 13px;border-radius:7px;font-size:11px;font-weight:700}
+section{margin-top:18px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:12px}h2{font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin:0;font-weight:800}.hint{font-size:10px;color:var(--muted)}
+.weekbar{display:flex;gap:5px;margin-bottom:9px}.weekbtn{background:transparent}.weekbtn.active{background:var(--accent);border-color:var(--accent);color:white}.weekbtn:hover:not(.active){background:var(--paper)}
+.weekgrid{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--line);background:var(--paper);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.day{padding:10px;min-height:126px;border-right:1px solid var(--line);display:flex;flex-direction:column}.day:last-child{border:0}.day.today{background:#edf1e9;box-shadow:inset 0 2px 0 var(--accent)}
+.dayname{font-size:10px;text-transform:uppercase;letter-spacing:.09em;font-weight:800}.daytype{display:inline-block;margin-top:6px;width:max-content;font-size:9px;font-weight:750;padding:3px 5px;border-radius:4px;background:#e9e8e2;color:#686960}.daytype.strength{background:var(--accent2);color:#52624d}.daytype.walk{background:#eeeae2;color:#756d61}
+.plan{font-size:11px;margin-top:7px;line-height:1.4}.plan span{display:block;color:var(--muted);margin-top:2px}.done{margin-top:auto;display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted);padding-top:8px}
+input[type=checkbox]{appearance:none;width:15px;height:15px;border:1px solid #aaa99f;border-radius:4px;background:transparent;display:grid;place-content:center;margin:0}input[type=checkbox]::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--accent);transform:scale(0)}input[type=checkbox]:checked{border-color:var(--accent)}input[type=checkbox]:checked::before{transform:scale(1)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.two,.workouts,.safety{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)}
+.timeline{display:grid;grid-template-columns:55px 1fr;gap:7px 10px}.time{font-size:10px;color:var(--accent);font-weight:800}.event{font-size:11px}.note{border-top:1px solid var(--line);margin-top:10px;padding-top:9px;color:var(--muted);font-size:10px}
+.workout-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px}.workout-title{font-size:19px;font-weight:700;letter-spacing:-.025em}.workout-time{font-size:9px;color:var(--muted);text-align:right}.ex{display:grid;grid-template-columns:25px 1fr auto;gap:8px;padding:8px 0;border-top:1px solid var(--line);align-items:center}.ex:first-child{border-top:0}.num{font-size:9px;color:var(--muted)}.ename{font-size:11px;font-weight:700}.cue{display:block;font-size:9px;color:var(--muted);font-weight:400;margin-top:1px}.dose{font-size:10px;color:var(--accent);font-weight:800;white-space:nowrap}
+.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.step{background:var(--paper);border:1px solid var(--line);padding:10px;border-radius:9px;min-height:78px}.step.active{border-color:var(--accent);box-shadow:inset 0 2px 0 var(--accent)}.step b{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.step strong{display:block;font-size:12px;margin-top:4px}.step small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+.safe{background:var(--warmbg);border:1px solid #ddd0bd;border-radius:var(--r);padding:13px}.safe h3{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm);margin:0 0 7px}.avoid{font-size:12px;font-weight:750}.safe p{font-size:10px;color:#625c51;margin:8px 0 0}.review{color:var(--red)!important}
+.target{background:#e6ebe1;border:1px solid #d2dacb;border-radius:var(--r);padding:14px 16px}.target-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--accent)}.target strong{display:block;font-size:20px;letter-spacing:-.025em;margin-top:3px}.target span{display:block;color:var(--muted);font-size:10px;margin-top:3px}footer{color:var(--muted);font-size:10px;text-align:center;padding-top:12px;margin-top:16px;border-top:1px solid var(--line)}
+@media(max-width:850px){main{padding:16px 13px 25px}header{display:block}.meta{justify-content:flex-start;margin-top:12px}.weekgrid{grid-template-columns:repeat(4,1fr)}.day:nth-child(4){border-right:0}.day:nth-child(n+5){border-top:1px solid var(--line)}.two,.workouts,.safety{grid-template-columns:1fr}}
+@media(max-width:560px){.today{grid-template-columns:1fr}.today-action{justify-content:flex-start}.weekgrid{grid-template-columns:repeat(2,1fr)}.day:nth-child(even){border-right:0}.day:nth-child(n+3){border-top:1px solid var(--line)}.progress{grid-template-columns:repeat(2,1fr)}.weekbar{overflow-x:auto}.weekbtn{flex:0 0 auto}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div><p class="kicker">Month 1 · Beginner Movement</p><h1>4-Week Movement Plan</h1><p class="sub">Rebuild consistency. Protect the knee. Progress gradually.</p></div>
+<div class="meta"><span class="pill">3 strength sessions</span><span class="pill">20–25 min</span><span class="pill">1 dumbbell</span><span class="pill">Walking most days</span></div>
+</header>
+
+<section class="today">
+<div><div class="today-label">Today · <span id="todayName"></span></div><div class="today-title" id="todayTitle">Loading…</div><div class="today-detail" id="todayDetail"></div></div>
+<div class="today-action"><div class="progress-ring" id="ring"><span id="progressText">0%</span></div><button class="start" id="focusBtn">View today's plan</button></div>
+</section>
+
+<section id="schedule">
+<div class="head"><h2>Weekly plan</h2><button class="weekbtn" id="reset">Reset Week</button></div>
+<div class="weekbar" role="tablist" aria-label="Training week">
+<button class="weekbtn active" data-week="1">Week 1</button><button class="weekbtn" data-week="2">Week 2</button><button class="weekbtn" data-week="3">Week 3</button><button class="weekbtn" data-week="4">Week 4</button>
+</div>
+<div class="weekgrid" id="weekgrid"></div>
+</section>
+
+<div class="two">
+<section><div class="head"><h2>Morning routine</h2><span class="hint">Leave calmly at 06:40</span></div><div class="panel">
+<div class="timeline"><div class="time">05:05</div><div class="event">Fajr ends</div><div class="time">+10 min</div><div class="event">Transition</div><div class="time">20–25m</div><div class="event">Workout</div><div class="time">—</div><div class="event">Shower → breakfast</div><div class="time">06:40</div><div class="event">Leave for work</div></div>
+<div class="note">Walking days: Fajr → 15–20 min walk → shower → breakfast → 06:40 leave.</div>
+</div></section>
+<section><div class="head"><h2>Training principle</h2><span class="hint">Keep it repeatable</span></div><div class="panel"><div style="font-size:18px;font-weight:700;letter-spacing:-.025em">Finish feeling capable, not crushed.</div><div class="note" style="border:0;padding-top:5px;margin-top:4px">Controlled repetitions and comfortable range matter more than adding load.</div></div></section>
+</div>
+
+<section id="strength"><div class="head"><h2>Strength A / B</h2><span class="hint">Rest ~60 sec between sets</span></div>
+<div class="workouts">
+<article class="panel"><div class="workout-head"><div class="workout-title">Strength A</div><div class="workout-time">20–25 MIN<br>5 MOVEMENTS</div></div>
+<div class="ex"><span class="num">01</span><span class="ename">Chair Squat<span class="cue">Use the chair to control depth.</span></span><span class="dose">2 × 8</span></div>
+<div class="ex"><span class="num">02</span><span class="ename">One-arm Dumbbell Row<span class="cue">Support the free hand.</span></span><span class="dose">2 × 10/side</span></div>
+<div class="ex"><span class="num">03</span><span class="ename">Dumbbell Romanian Deadlift<span class="cue">Push hips back; keep load close.</span></span><span class="dose">2 × 10</span></div>
+<div class="ex"><span class="num">04</span><span class="ename">Incline Push-up<span class="cue">Use a stable elevated surface.</span></span><span class="dose">2 × 8–12</span></div>
+<div class="ex"><span class="num">05</span><span class="ename">Glute Bridge<span class="cue">Pause briefly at the top.</span></span><span class="dose">2 × 10–15</span></div>
+</article>
+<article class="panel"><div class="workout-head"><div class="workout-title">Strength B</div><div class="workout-time">20–25 MIN<br>5 MOVEMENTS</div></div>
+<div class="ex"><span class="num">01</span><span class="ename">Sit-to-Stand<span class="cue">Choose a comfortable chair height.</span></span><span class="dose">2 × 8</span></div>
+<div class="ex"><span class="num">02</span><span class="ename">One-arm Dumbbell Row<span class="cue">Support the free hand.</span></span><span class="dose">2 × 10/side</span></div>
+<div class="ex"><span class="num">03</span><span class="ename">Dumbbell Romanian Deadlift<span class="cue">Push hips back; keep load close.</span></span><span class="dose">2 × 10</span></div>
+<div class="ex"><span class="num">04</span><span class="ename">Standing Dumbbell Press<span class="cue">Brace gently; press smoothly.</span></span><span class="dose">2 × 8–10/side</span></div>
+<div class="ex"><span class="num">05</span><span class="ename">Glute Bridge<span class="cue">Pause briefly at the top.</span></span><span class="dose">2 × 10–15</span></div>
+</article>
+</div></section>
+
+<section><div class="head"><h2>Progression</h2><span class="hint">Advance only when comfortable</span></div><div class="progress">
+<div class="step active"><b>Week 1</b><strong>2 sets · easy</strong><small>Learn the movements.</small></div>
+<div class="step"><b>Week 2</b><strong>Slightly more reps</strong><small>Keep control.</small></div>
+<div class="step"><b>Week 3</b><strong>3 sets OR more resistance</strong><small>Only if comfortable.</small></div>
+<div class="step"><b>Week 4</b><strong>3 sets + controlled reps</strong><small>No need to rush.</small></div>
+</div><div class="hint" style="margin-top:7px">Walking: 10–15 → 15–20 → 20–25 → 25–30 min</div></section>
+
+<section><div class="head"><h2>Knee safety</h2><span class="hint">Pain is a signal, not a challenge</span></div><div class="safety">
+<div class="safe"><h3>Avoid for now</h3><div class="avoid">Deep squats · lunges · jumping · running</div><p><strong>Rule:</strong> Muscular effort is fine. Do not deliberately push through knee pain. If a movement hurts: reduce range → reduce intensity → stop that movement if necessary.</p></div>
+<div class="safe"><h3>Medical review</h3><p class="review">Significant swelling, redness/warmth, severe pain, inability to bear weight, locking, repeated giving-way, or pain following an injury warrants medical assessment.</p></div>
+</div></section>
+
+<section><div class="target"><div class="target-label">Month 1 target</div><strong>Exercise 3 mornings/week without aggravating the knee.</strong><span>Rebuild tolerance first. Fitness comes later.</span></div></section>
+<footer>Rest ~60 sec between sets. Move slowly and comfortably.</footer>
+</main>
+<script>
+(()=>{const KEY="movement-dashboard-v2",days=[["Mon","Strength A","Optional walk","strength"],["Tue","15–20 min walk","20–30 min walk","walk"],["Wed","Strength B","Easy walk","strength"],["Thu","15–20 min walk","20–30 min walk","walk"],["Fri","Strength A","Optional walk","strength"],["Sat","Longer walk/activity","—","walk"],["Sun","Rest","Easy walk","rest"]],order=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],saved=JSON.parse(localStorage.getItem(KEY)||"{}");let week=+localStorage.getItem(KEY+"-week")||1;const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),todayName=order[(new Date().getDay()+6)%7];
+function progress(){let n=days.filter(d=>saved["w"+week+"-"+d[0].toLowerCase()]).length,p=Math.round(n/7*100);$("#progressText").textContent=p+"%";$("#ring").style.setProperty("--p",p+"%")}
+function render(){ $("#weekgrid").innerHTML=days.map(d=>{let id="w"+week+"-"+d[0].toLowerCase();return '<article class="day '+(d[0]===todayName?"today":"")+'"><div class="dayname">'+d[0]+'</div><span class="daytype '+d[3]+'">'+(d[3]==="strength"?"Strength":d[3]==="walk"?"Walking":"Rest")+'</span><div class="plan">'+d[1]+'<span>'+d[2]+'</span></div><label class="done"><input type="checkbox" data-id="'+id+'" '+(saved[id]?"checked":"")+'> Done</label></article>'}).join("");$$(".weekbtn[data-week]").forEach(b=>b.classList.toggle("active",+b.dataset.week===week));$$(".step").forEach((s,i)=>s.classList.toggle("active",i===week-1));$$("input[data-id]").forEach(c=>c.onchange=()=>{saved[c.dataset.id]=c.checked;localStorage.setItem(KEY,JSON.stringify(saved));progress()});progress();let d=days.find(x=>x[0]===todayName);$("#todayName").textContent=todayName;$("#todayTitle").textContent=d[1];$("#todayDetail").textContent=d[2]==="—"?"Recovery day":d[2]+" · "+(d[3]==="strength"?"20–25 min":"walking")}
+$$(".weekbtn[data-week]").forEach(b=>b.onclick=()=>{week=+b.dataset.week;localStorage.setItem(KEY+"-week",week);render()});
+$("#reset").onclick=()=>{if(confirm("Reset completion marks for this week?")){days.forEach(d=>delete saved["w"+week+"-"+d[0].toLowerCase()]);localStorage.setItem(KEY,JSON.stringify(saved));render()}};
+$("#focusBtn").onclick=()=>$("#schedule").scrollIntoView({behavior:"smooth",block:"start"});render()})();
+</script>
+</body>
+</html>
